@@ -298,7 +298,7 @@ export default function ServicesSection() {
           {SERVICES.map((s) => (
             <div
               key={s.title}
-              className={`${s.span} rounded-2xl p-6 transition-all duration-300 group cursor-default flex flex-col justify-between`}
+              className={`${s.span} service-card ${s.accent ? "service-card-accent" : "service-card-plain"} rounded-2xl p-6 cursor-default flex flex-col justify-between`}
               style={{
                 background: s.accent
                   ? "linear-gradient(135deg, rgba(4,138,129,0.18), rgba(46,64,87,0.3))"
@@ -310,7 +310,7 @@ export default function ServicesSection() {
               }}
             >
               <div>
-                <div className="text-3xl mb-3">{s.emoji}</div>
+                <div className="text-3xl mb-3 transition-transform duration-300 group-hover:scale-110">{s.emoji}</div>
                 <h3 className="text-base font-bold text-white mb-1.5 leading-snug">{s.title}</h3>
                 <p className="text-sm text-white/45 leading-relaxed">{s.desc}</p>
               </div>
@@ -330,10 +330,9 @@ export default function ServicesSection() {
 
         {/* PACKAGE BLOCK */}
         <div
-          className="mt-6 relative rounded-3xl overflow-hidden p-8 md:p-10"
+          className="mt-6 relative rounded-3xl overflow-hidden p-8 md:p-10 animated-border"
           style={{
-            background: "linear-gradient(120deg, rgba(4,138,129,0.25) 0%, rgba(46,64,87,0.5) 50%, rgba(4,138,129,0.15) 100%)",
-            border: "1px solid rgba(4,138,129,0.45)",
+            background: "linear-gradient(120deg, rgba(26,26,46,0.95) 0%, rgba(46,64,87,0.85) 50%, rgba(26,26,46,0.95) 100%)",
           }}
         >
           <div

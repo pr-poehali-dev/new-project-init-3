@@ -79,7 +79,7 @@ export default function AboutSection() {
       </section>
 
       {/* PROCESS */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-3xl mx-auto px-6 py-16">
         <div className="mb-14 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--brand-accent-light)" }}>
             Процесс
@@ -88,31 +88,51 @@ export default function AboutSection() {
             Как мы работаем
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+        {/* Timeline */}
+        <div className="relative flex flex-col gap-0">
+          {/* вертикальная линия */}
+          <div
+            className="absolute left-[22px] top-8 bottom-8 w-px"
+            style={{ background: "linear-gradient(180deg, rgba(4,138,129,0.6) 0%, rgba(4,138,129,0.1) 100%)" }}
+          />
+
           {PROCESS_STEPS.map((step, i) => (
-            <div
-              key={step.num}
-              className="relative rounded-2xl p-6 flex flex-col"
-              style={{
-                background: "rgba(46,64,87,0.2)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              {i < PROCESS_STEPS.length - 1 && (
+            <div key={step.num} className="relative flex gap-6 pb-10 last:pb-0">
+              {/* Dot */}
+              <div className="relative shrink-0 flex flex-col items-center" style={{ width: 44 }}>
                 <div
-                  className="hidden md:block absolute top-10 -right-2 w-4 h-px z-10"
-                  style={{ background: "rgba(4,138,129,0.4)" }}
-                />
-              )}
-              <div
-                className="text-3xl font-extrabold mb-4 leading-none"
-                style={{ color: "rgba(4,138,129,0.35)" }}
-              >
-                {step.num}
+                  className="w-11 h-11 rounded-full flex items-center justify-center z-10 relative"
+                  style={{
+                    background: i === 0
+                      ? "var(--brand-accent)"
+                      : "rgba(4,138,129,0.15)",
+                    border: "2px solid rgba(4,138,129,0.5)",
+                    boxShadow: i === 0 ? "0 0 16px rgba(4,138,129,0.5)" : "none",
+                    transition: "all 0.3s",
+                  }}
+                >
+                  <span
+                    className="text-xs font-extrabold"
+                    style={{ color: i === 0 ? "#fff" : "var(--brand-accent-light)" }}
+                  >
+                    {step.num}
+                  </span>
+                </div>
               </div>
-              <h3 className="text-base font-bold text-white mb-2 leading-snug">{step.title}</h3>
-              <p className="text-sm text-white/45 leading-relaxed">{step.desc}</p>
+
+              {/* Content */}
+              <div
+                className="flex-1 rounded-2xl p-5 mb-0"
+                style={{
+                  background: "rgba(46,64,87,0.2)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  backdropFilter: "blur(12px)",
+                }}
+              >
+                <h3 className="text-base font-bold text-white mb-1.5 leading-snug">{step.title}</h3>
+                <p className="text-sm text-white/45 leading-relaxed">{step.desc}</p>
+              </div>
             </div>
           ))}
         </div>

@@ -1,8 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const HERO_BG = "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/files/4e3ca4c3-1c22-46d5-817a-f449680d5e68.jpg";
 const TAGS = ["Лендинги", "AI-видео", "Изображения", "Ассистенты", "Музыка", "Консалтинг"];
+
+const PARTICLES = Array.from({ length: 22 }, (_, i) => ({
+  id: i,
+  left: `${8 + (i * 41) % 84}%`,
+  top: `${10 + (i * 37) % 75}%`,
+  size: 2 + (i % 3),
+  delay: `${(i * 0.9) % 8}s`,
+  duration: `${6 + (i * 1.3) % 7}s`,
+  opacity: 0.15 + (i % 4) * 0.1,
+}));
 
 function KineticHeadline({ text }: { text: string }) {
   const lines = text.split("\n");
@@ -24,11 +34,43 @@ function KineticHeadline({ text }: { text: string }) {
 
 export default function HeroSection() {
   const [scrolled, setScrolled] = useState(false);
+  const mouseRef = useRef({ x: 0.5, y: 0.5 });
+  const orb1Ref = useRef<HTMLDivElement>(null);
+  const orb2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    let raf: number;
+    const onMove = (e: MouseEvent) => {
+      mouseRef.current = {
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      };
+    };
+    const animate = () => {
+      if (orb1Ref.current) {
+        const dx = (mouseRef.current.x - 0.5) * 40;
+        const dy = (mouseRef.current.y - 0.5) * 30;
+        orb1Ref.current.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+      }
+      if (orb2Ref.current) {
+        const dx = (mouseRef.current.x - 0.5) * -25;
+        const dy = (mouseRef.current.y - 0.5) * -20;
+        orb2Ref.current.style.transform = `translate(${dx}px, ${dy}px)`;
+      }
+      raf = requestAnimationFrame(animate);
+    };
+    window.addEventListener("mousemove", onMove);
+    raf = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
@@ -68,6 +110,7 @@ export default function HeroSection() {
           background: `linear-gradient(135deg, #1A1A2E 0%, #2E4057 60%, #1A1A2E 100%)`,
         }}
       >
+        {/* BG image */}
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -82,13 +125,78 @@ export default function HeroSection() {
             background: "linear-gradient(180deg, rgba(26,26,46,0.3) 0%, rgba(26,26,46,0.7) 60%, rgba(26,26,46,1) 100%)",
           }}
         />
+
+        {/* Орб 1 — основной, следует за мышью */}
         <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full animate-glow-pulse"
+          ref={orb1Ref}
+          className="absolute animate-orb-1"
           style={{
-            background: "radial-gradient(circle, rgba(4,138,129,0.15) 0%, transparent 70%)",
-            filter: "blur(40px)",
+            top: "35%",
+            left: "50%",
+            width: 700,
+            height: 700,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(4,138,129,0.18) 0%, rgba(6,196,184,0.06) 50%, transparent 70%)",
+            filter: "blur(48px)",
+            transition: "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
+            pointerEvents: "none",
           }}
         />
+
+        {/* Орб 2 — акцентный фиолетовый */}
+        <div
+          ref={orb2Ref}
+          className="absolute animate-orb-2"
+          style={{
+            top: "60%",
+            left: "15%",
+            width: 400,
+            height: 400,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(100,60,180,0.12) 0%, transparent 70%)",
+            filter: "blur(60px)",
+            transition: "transform 1s cubic-bezier(0.22, 1, 0.36, 1)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Орб 3 — правый нижний */}
+        <div
+          className="absolute animate-orb-3"
+          style={{
+            top: "70%",
+            right: "10%",
+            width: 320,
+            height: 320,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(4,138,129,0.1) 0%, transparent 70%)",
+            filter: "blur(50px)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Частицы */}
+        {PARTICLES.map((p) => (
+          <div
+            key={p.id}
+            className="particle"
+            style={{
+              left: p.left,
+              top: p.top,
+              width: p.size,
+              height: p.size,
+              background: p.id % 3 === 0
+                ? "rgba(6,196,184,0.8)"
+                : p.id % 3 === 1
+                ? "rgba(255,255,255,0.6)"
+                : "rgba(4,138,129,0.9)",
+              animationDelay: p.delay,
+              animationDuration: p.duration,
+              opacity: p.opacity,
+              boxShadow: p.id % 3 === 0 ? "0 0 6px rgba(6,196,184,0.6)" : "none",
+            }}
+          />
+        ))}
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div

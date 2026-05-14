@@ -209,6 +209,131 @@
   }
 }
 
+/* Орбы — плавное движение */
+@keyframes orb-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(60px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 50px) scale(0.95);
+  }
+}
+@keyframes orb-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-50px, 30px) scale(0.9);
+  }
+  66% {
+    transform: translate(40px, -60px) scale(1.05);
+  }
+}
+@keyframes orb-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.08);
+  }
+}
+
+/* Частицы */
+@keyframes particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(0.5);
+  }
+}
+
+.animate-orb-1 {
+  animation: orb-drift-1 18s ease-in-out infinite;
+}
+.animate-orb-2 {
+  animation: orb-drift-2 22s ease-in-out infinite;
+}
+.animate-orb-3 {
+  animation: orb-drift-3 15s ease-in-out infinite;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-float linear infinite;
+}
+
+/* Анимированный gradient border для пакета */
+@keyframes border-rotate {
+  from {
+    --border-angle: 0deg;
+  }
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated-border {
+  --border-angle: 0deg;
+  animation: border-rotate 4s linear infinite;
+  background-image:
+    linear-gradient(var(--brand-bg), var(--brand-bg)),
+    conic-gradient(
+      from var(--border-angle),
+      #048a81,
+      #06c4b8,
+      #a8edea,
+      #ffb400,
+      #048a81
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 2px solid transparent;
+}
+
+/* Hover-эффект карточек услуг */
+.service-card {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(4, 138, 129, 0.2);
+}
+.service-card-accent:hover {
+  box-shadow: 0 16px 48px rgba(4, 138, 129, 0.35);
+  border-color: rgba(4, 138, 129, 0.65) !important;
+}
+.service-card-plain:hover {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;

@@ -5,54 +5,73 @@ const HERO_BG = "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f099
 
 const TAGS = ["Лендинги", "AI-видео", "Изображения", "Ассистенты", "Музыка", "Консалтинг"];
 
-const SERVICES = [
+interface ServiceItem {
+  emoji: string;
+  title: string;
+  desc: string;
+  price: string;
+  span: string;
+  accent?: boolean;
+}
+
+const SERVICES: ServiceItem[] = [
   {
-    icon: "FileText",
-    title: "Лендинги",
-    desc: "Конвертирующие страницы с AI-визуалом, анимацией и продающей структурой. От брифа до готового сайта.",
-    span: "col-span-12 md:col-span-5",
+    emoji: "🎬",
+    title: "AI-видео и анимация",
+    desc: "Рекламные ролики, клипы, мультфильмы",
+    price: "от 15 000 ₽",
+    span: "col-span-12 md:col-span-6",
     accent: true,
-    wide: false,
   },
   {
-    icon: "Video",
-    title: "AI-видео",
-    desc: "Рекламные ролики, reels, презентации — сгенерированные и смонтированные с помощью нейросетей.",
+    emoji: "🖼",
+    title: "Изображения и баннеры",
+    desc: "Рекламные фото продуктов, серии для соцсетей",
+    price: "от 5 000 ₽",
+    span: "col-span-12 md:col-span-6",
+    accent: true,
+  },
+  {
+    emoji: "💻",
+    title: "Лендинги под ключ",
+    desc: "Продающие сайты с AI-визуалами и маркетинговой структурой",
+    price: "от 35 000 ₽",
     span: "col-span-12 md:col-span-7",
-    accent: false,
-    wide: false,
   },
   {
-    icon: "Image",
-    title: "Изображения",
-    desc: "Уникальный визуал для соцсетей, рекламы и брендбуков. Каждый образ — под вашу айдентику.",
-    span: "col-span-12 md:col-span-4",
-    accent: false,
-    wide: false,
+    emoji: "🤖",
+    title: "AI-ассистенты и чат-боты",
+    desc: "Telegram-боты и ассистенты для бизнеса",
+    price: "от 15 000 ₽",
+    span: "col-span-12 md:col-span-5",
   },
   {
-    icon: "Bot",
-    title: "AI-ассистенты",
-    desc: "Чат-боты и голосовые ассистенты для бизнеса: продажи, поддержка, автоматизация процессов.",
-    span: "col-span-12 md:col-span-4",
-    accent: false,
-    wide: false,
+    emoji: "🎵",
+    title: "AI-треки и джинглы",
+    desc: "Музыка и джинглы для брендов в Suno",
+    price: "от 10 000 ₽",
+    span: "col-span-12 md:col-span-3",
   },
   {
-    icon: "Music",
-    title: "Музыка",
-    desc: "Оригинальные джинглы, фоновые треки и подкасты. AI-продакшн без роялти.",
-    span: "col-span-12 md:col-span-4",
-    accent: false,
-    wide: false,
+    emoji: "🐾",
+    title: "Видео с питомцами",
+    desc: "AI-анимация и видео для владельцев животных",
+    price: "от 5 000 ₽",
+    span: "col-span-12 md:col-span-3",
   },
   {
-    icon: "LineChart",
-    title: "Консалтинг",
-    desc: "Аудит ваших задач, подбор AI-инструментов, стратегия внедрения. 25 лет маркетинговой экспертизы.",
-    span: "col-span-12 md:col-span-12",
-    accent: true,
-    wide: true,
+    emoji: "📊",
+    title: "Презентации",
+    desc: "AI-презентации до 30 слайдов",
+    price: "от 12 000 ₽",
+    span: "col-span-12 md:col-span-3",
+  },
+  {
+    emoji: "🧠",
+    title: "Консалтинг по AI",
+    desc: "Подбор инструментов и внедрение нейросетей в бизнес",
+    price: "от 8 000 ₽",
+    span: "col-span-12 md:col-span-3",
   },
 ];
 
@@ -481,32 +500,99 @@ export default function Index() {
           {SERVICES.map((s) => (
             <div
               key={s.title}
-              className={`${s.span} glass-card rounded-2xl p-7 transition-all duration-300 group cursor-default ${s.wide ? "flex flex-col md:flex-row md:items-center md:gap-8" : ""}`}
+              className={`${s.span} rounded-2xl p-6 transition-all duration-300 group cursor-default flex flex-col justify-between`}
               style={{
                 background: s.accent
-                  ? "linear-gradient(135deg, rgba(4,138,129,0.2), rgba(46,64,87,0.3))"
-                  : "rgba(46,64,87,0.2)",
+                  ? "linear-gradient(135deg, rgba(4,138,129,0.18), rgba(46,64,87,0.3))"
+                  : "rgba(46,64,87,0.18)",
                 border: s.accent
-                  ? "1px solid rgba(4,138,129,0.35)"
+                  ? "1px solid rgba(4,138,129,0.3)"
                   : "1px solid rgba(255,255,255,0.07)",
+                backdropFilter: "blur(12px)",
               }}
             >
+              <div>
+                <div className="text-3xl mb-3">{s.emoji}</div>
+                <h3 className="text-base font-bold text-white mb-1.5 leading-snug">{s.title}</h3>
+                <p className="text-sm text-white/45 leading-relaxed">{s.desc}</p>
+              </div>
               <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 ${s.wide ? "md:mb-0 md:shrink-0" : ""}`}
+                className="mt-4 inline-block text-sm font-bold rounded-xl px-3 py-1.5 self-start"
                 style={{
-                  background: s.accent
-                    ? "rgba(4,138,129,0.3)"
-                    : "rgba(255,255,255,0.07)",
+                  background: s.accent ? "rgba(4,138,129,0.25)" : "rgba(255,255,255,0.06)",
+                  color: s.accent ? "var(--brand-accent-light)" : "rgba(255,255,255,0.6)",
+                  border: s.accent ? "1px solid rgba(4,138,129,0.3)" : "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <Icon name={s.icon} size={22} className="text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
-                <p className="text-sm text-white/55 leading-relaxed">{s.desc}</p>
+                {s.price}
               </div>
             </div>
           ))}
+        </div>
+
+        {/* PACKAGE BLOCK */}
+        <div
+          className="mt-6 relative rounded-3xl overflow-hidden p-8 md:p-10"
+          style={{
+            background: "linear-gradient(120deg, rgba(4,138,129,0.25) 0%, rgba(46,64,87,0.5) 50%, rgba(4,138,129,0.15) 100%)",
+            border: "1px solid rgba(4,138,129,0.45)",
+          }}
+        >
+          {/* Glow */}
+          <div
+            className="absolute -top-20 -right-20 w-72 h-72 rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(4,138,129,0.25) 0%, transparent 70%)",
+              filter: "blur(40px)",
+            }}
+          />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 text-xs font-bold"
+                style={{
+                  background: "rgba(255,180,0,0.15)",
+                  border: "1px solid rgba(255,180,0,0.35)",
+                  color: "#FFB400",
+                }}
+              >
+                🔥 Лучший выбор
+              </div>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-tight">
+                Система привлечения клиентов под ключ
+              </h3>
+              <p className="text-white/60 text-sm leading-relaxed max-w-xl mb-4">
+                Лендинг + AI-ассистент в Telegram. Человек заходит на сайт → бот принимает заявку → вы получаете готового клиента.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["Лендинг", "AI-бот в Telegram", "Интеграция", "Поддержка"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs font-medium rounded-full px-3 py-1"
+                    style={{
+                      background: "rgba(255,255,255,0.07)",
+                      color: "rgba(255,255,255,0.55)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
+              <div>
+                <div className="text-4xl font-extrabold text-white leading-none">от 60 000 ₽</div>
+                <div className="text-xs text-white/35 mt-1">полная система под ключ</div>
+              </div>
+              <a
+                href="https://t.me/ВАШ_TELEGRAM"
+                className="cta-btn inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-bold whitespace-nowrap"
+              >
+                <span>Хочу такую систему</span>
+                <Icon name="ArrowRight" size={16} className="relative z-10" />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

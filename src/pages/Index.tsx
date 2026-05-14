@@ -358,6 +358,79 @@ function PortfolioSection() {
   );
 }
 
+const PHOTO_PLACEHOLDER = "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/files/98c7a67a-4061-4549-aef3-b36c0cf3c50d.jpg";
+
+const ABOUT_BADGES = [
+  "Школа «Хакни нейросети» — Сергей Черников",
+  "Курс по AI-видео — Саша Комович",
+  "School Syntx",
+];
+
+const PROCESS_STEPS = [
+  { num: "01", title: "Бесплатная консультация", desc: "Разбираем вашу задачу и цели" },
+  { num: "02", title: "Предложение и стоимость", desc: "Без скрытых платежей и неожиданностей" },
+  { num: "03", title: "Создаю результат", desc: "Правки включены в стоимость" },
+  { num: "04", title: "Передаю готовый материал", desc: "Все файлы и исходники — ваши" },
+];
+
+function ContactForm() {
+  const [name, setName] = useState("");
+  const [task, setTask] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
+  return sent ? (
+    <div
+      className="flex flex-col items-center justify-center gap-4 py-10 rounded-2xl text-center"
+      style={{ background: "rgba(4,138,129,0.1)", border: "1px solid rgba(4,138,129,0.25)" }}
+    >
+      <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: "rgba(4,138,129,0.25)" }}>
+        <Icon name="Check" size={22} className="text-[#06c4b8]" />
+      </div>
+      <p className="text-white font-semibold">Заявка отправлена!</p>
+      <p className="text-sm text-white/45">Свяжусь с вами в течение 48 часов</p>
+    </div>
+  ) : (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <input
+        type="text"
+        placeholder="Ваше имя"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        className="w-full rounded-xl px-5 py-4 text-sm text-white placeholder-white/30 outline-none transition-all duration-200"
+        style={{
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.1)",
+        }}
+        onFocus={(e) => (e.target.style.borderColor = "rgba(4,138,129,0.6)")}
+        onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+      />
+      <textarea
+        placeholder="Опишите задачу"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        required
+        rows={4}
+        className="w-full rounded-xl px-5 py-4 text-sm text-white placeholder-white/30 outline-none resize-none transition-all duration-200"
+        style={{
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.1)",
+        }}
+        onFocus={(e) => (e.target.style.borderColor = "rgba(4,138,129,0.6)")}
+        onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+      />
+      <button type="submit" className="cta-btn rounded-xl px-6 py-4 text-sm font-bold w-full">
+        <span>Отправить заявку</span>
+      </button>
+    </form>
+  );
+}
+
 export default function Index() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -639,6 +712,184 @@ export default function Index() {
 
       {/* PORTFOLIO */}
       <PortfolioSection />
+
+      {/* ABOUT */}
+      <section className="max-w-6xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Photo */}
+          <div className="relative">
+            <div
+              className="absolute -inset-4 rounded-3xl opacity-30"
+              style={{ background: "radial-gradient(circle, rgba(4,138,129,0.4) 0%, transparent 70%)", filter: "blur(30px)" }}
+            />
+            <div
+              className="relative rounded-3xl overflow-hidden aspect-square"
+              style={{ border: "1px solid rgba(4,138,129,0.2)" }}
+            >
+              <img
+                src={PHOTO_PLACEHOLDER}
+                alt="Фото специалиста"
+                className="w-full h-full object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(180deg, transparent 50%, rgba(26,26,46,0.6) 100%)" }}
+              />
+              <div
+                className="absolute bottom-5 left-5 right-5 text-xs text-white/50 italic text-center"
+              >
+                Здесь будет ваше фото
+              </div>
+            </div>
+          </div>
+
+          {/* Text */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "var(--brand-accent-light)" }}>
+              Обо мне
+            </p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-6">
+              25+ лет в маркетинге.<br />Теперь — с&nbsp;нейросетями.
+            </h2>
+            <p className="text-white/60 text-base leading-relaxed mb-8">
+              25+ лет в маркетинге и рекламе. Понимаю бизнес-задачи — не только инструменты. Соединяю опыт в рекламной индустрии с возможностями нейросетей.
+            </p>
+            <div className="flex flex-col gap-3">
+              <p className="text-xs text-white/35 uppercase tracking-widest mb-1">Обучение и сертификаты</p>
+              {ABOUT_BADGES.map((badge) => (
+                <div
+                  key={badge}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.07)",
+                  }}
+                >
+                  <div
+                    className="w-2 h-2 rounded-full shrink-0"
+                    style={{ background: "var(--brand-accent)" }}
+                  />
+                  <span className="text-sm text-white/70 font-medium">{badge}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="mb-14 text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--brand-accent-light)" }}>
+            Процесс
+          </p>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+            Как мы работаем
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {PROCESS_STEPS.map((step, i) => (
+            <div
+              key={step.num}
+              className="relative rounded-2xl p-6 flex flex-col"
+              style={{
+                background: "rgba(46,64,87,0.2)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                backdropFilter: "blur(12px)",
+              }}
+            >
+              {/* connector line */}
+              {i < PROCESS_STEPS.length - 1 && (
+                <div
+                  className="hidden md:block absolute top-10 -right-2 w-4 h-px z-10"
+                  style={{ background: "rgba(4,138,129,0.4)" }}
+                />
+              )}
+              <div
+                className="text-3xl font-extrabold mb-4 leading-none"
+                style={{ color: "rgba(4,138,129,0.35)" }}
+              >
+                {step.num}
+              </div>
+              <h3 className="text-base font-bold text-white mb-2 leading-snug">{step.title}</h3>
+              <p className="text-sm text-white/45 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACTS */}
+      <section className="max-w-6xl mx-auto px-6 py-16 pb-24" id="contacts">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          {/* Left */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "var(--brand-accent-light)" }}>
+              Контакты
+            </p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-6">
+              Давайте создадим ваш следующий проект
+            </h2>
+            <p className="text-white/50 text-sm leading-relaxed mb-8">
+              Напишите в мессенджер или заполните форму — отвечу в течение 48 часов.
+            </p>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://t.me/ВАШ_TELEGRAM"
+                className="flex items-center gap-4 rounded-2xl px-6 py-4 transition-all duration-300 group"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform"
+                  style={{ background: "rgba(4,138,129,0.2)" }}
+                >
+                  ✈️
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">Telegram</div>
+                  <div className="text-white/35 text-xs">Написать в Telegram</div>
+                </div>
+                <Icon name="ArrowRight" size={16} className="ml-auto text-white/20 group-hover:text-[#06c4b8] transition-colors" />
+              </a>
+              <a
+                href="https://wa.me/ВАШТЕЛЕФОН"
+                className="flex items-center gap-4 rounded-2xl px-6 py-4 transition-all duration-300 group"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 group-hover:scale-110 transition-transform"
+                  style={{ background: "rgba(37,211,102,0.15)" }}
+                >
+                  💬
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">WhatsApp</div>
+                  <div className="text-white/35 text-xs">Написать в WhatsApp</div>
+                </div>
+                <Icon name="ArrowRight" size={16} className="ml-auto text-white/20 group-hover:text-[#06c4b8] transition-colors" />
+              </a>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div
+            className="rounded-3xl p-7"
+            style={{
+              background: "rgba(46,64,87,0.2)",
+              border: "1px solid rgba(255,255,255,0.07)",
+              backdropFilter: "blur(16px)",
+            }}
+          >
+            <h3 className="text-lg font-bold text-white mb-6">Отправить заявку</h3>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="max-w-3xl mx-auto px-6 py-24">

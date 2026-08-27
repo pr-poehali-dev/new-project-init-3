@@ -25,7 +25,8 @@ export default function NavBar() {
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <ThemeToggle />
           <a className="btn" href="#contact">
-            Обсудить проект
+            <span className="btn-full">Обсудить проект</span>
+            <span className="btn-short">Написать</span>
           </a>
         </div>
       </div>

@@ -1,12 +1,26 @@
 import { useState } from "react";
 
-const CERT_IMG = "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/files/25c431c0-1d88-47f9-a3b7-6fbd3b01c7d5.jpg";
-
 const CERTS = [
-  { title: "Filmmaker.AI — профессия будущего", sub: "Школа Саши Комович" },
-  { title: "Нейросети для бизнеса, 72 часа", sub: "«Хакни Нейросети» Сергея Черникова" },
-  { title: "Практический курс по нейросетям, Creator Pro", sub: "SYNTX.AI · 37 часов" },
-  { title: "Креативный контент в нейросетях", sub: "XR School × SYNTX" },
+  {
+    title: "XR School × SYNTX",
+    sub: "Креативный контент в нейросетях",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/62dcb54b-b7c0-478c-ae43-0f88c29307f2.png",
+  },
+  {
+    title: "SYNTX.AI · 37 часов",
+    sub: "Практический курс по нейросетям, Creator Pro",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/254c6e2d-e03a-4e24-ab91-96109347835b.jpg",
+  },
+  {
+    title: "«Хакни Нейросети» Сергея Черникова",
+    sub: "Нейросети для бизнеса, 72 часа",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/f646591f-17ab-4488-aa12-3bf6b5186ace.jpg",
+  },
+  {
+    title: "Школа Саши Комович",
+    sub: "Filmmaker.AI — профессия будущего",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/bf61d91c-68be-4523-bcb8-764eb4d61360.jpg",
+  },
 ];
 
 interface CertsOverlayProps {
@@ -15,7 +29,7 @@ interface CertsOverlayProps {
 }
 
 export default function CertsOverlay({ open, onClose }: CertsOverlayProps) {
-  const [zoomOpen, setZoomOpen] = useState(false);
+  const [zoomImg, setZoomImg] = useState<string | null>(null);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
@@ -35,8 +49,8 @@ export default function CertsOverlay({ open, onClose }: CertsOverlayProps) {
           </div>
           <div className="certs-grid">
             {CERTS.map((c) => (
-              <div className="cert-card" key={c.title} onClick={() => setZoomOpen(true)}>
-                <img src={CERT_IMG} alt={c.title} loading="lazy" />
+              <div className="cert-card" key={c.title} onClick={() => setZoomImg(c.img)}>
+                <img src={c.img} alt={c.title} loading="lazy" />
                 <div className="cc-meta">
                   {c.title}
                   <span>{c.sub}</span>
@@ -47,8 +61,8 @@ export default function CertsOverlay({ open, onClose }: CertsOverlayProps) {
         </div>
       </div>
 
-      <div className={`cert-zoom ${zoomOpen ? "open" : ""}`} onClick={() => setZoomOpen(false)}>
-        <img src={zoomOpen ? CERT_IMG : ""} alt="Сертификат" />
+      <div className={`cert-zoom ${zoomImg ? "open" : ""}`} onClick={() => setZoomImg(null)}>
+        <img src={zoomImg || ""} alt="Сертификат" />
       </div>
     </>
   );

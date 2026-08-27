@@ -1,4 +1,4 @@
-const PHOTO_URL = "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/files/66d40f64-f355-437d-b716-6bfb1509c369.jpg";
+const PHOTO_URL = "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/62dcb54b-b7c0-478c-ae43-0f88c29307f2.png";
 
 interface AboutSectionProps {
   onOpenCerts: () => void;

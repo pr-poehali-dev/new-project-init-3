@@ -46,7 +46,11 @@ export default function AboutSection({ onOpenCerts }: AboutSectionProps) {
           </button>
         </div>
         <div className="ph-slot about-photo reveal filled" data-slot="photo">
-          <img src={PHOTO_URL} alt="Анна — основатель студии «Пигмент и Пиксель»" />
+          <img
+            src={PHOTO_URL}
+            alt="Анна — основатель студии «Пигмент и Пиксель»"
+            style={{ objectPosition: "50% 8%" }}
+          />
         </div>
       </div>
     </section>

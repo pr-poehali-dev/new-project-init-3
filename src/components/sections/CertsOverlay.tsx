@@ -4,22 +4,22 @@ const CERTS = [
   {
     title: "XR School × SYNTX",
     sub: "Креативный контент в нейросетях",
-    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/e208ea81-cb84-4679-b0bf-49981a21b609.jpg",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/9645a18f-4238-4d4b-b39f-e1f7d037afc1.jpg",
   },
   {
     title: "SYNTX.AI · 37 часов",
     sub: "Практический курс по нейросетям, Creator Pro",
-    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/254c6e2d-e03a-4e24-ab91-96109347835b.jpg",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/f9de9068-f76e-4917-834c-a66a82087528.jpg",
   },
   {
     title: "«Хакни Нейросети» Сергея Черникова",
     sub: "Нейросети для бизнеса, 72 часа",
-    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/f646591f-17ab-4488-aa12-3bf6b5186ace.jpg",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/66449200-791f-468b-9253-7ba51c9caf79.jpg",
   },
   {
     title: "Школа Саши Комович",
     sub: "Filmmaker.AI — профессия будущего",
-    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/bf61d91c-68be-4523-bcb8-764eb4d61360.jpg",
+    img: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/b540b794-609e-484e-b84f-898264b8e1e1.jpg",
   },
 ];
 

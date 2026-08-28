@@ -34,6 +34,7 @@ html[data-theme="light"] {
 }
 html {
   transition: background-color 0.4s;
+  scroll-behavior: smooth;
 }
 body,
 nav,
@@ -58,12 +59,6 @@ footer {
   padding: 0;
   box-sizing: border-box;
 }
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
 body {
   background: var(--bg);
   color: var(--ink);
@@ -71,7 +66,6 @@ body {
   font-size: 17px;
   line-height: 1.65;
   overflow-x: clip;
-  touch-action: pan-y;
 }
 ::selection {
   background: var(--violet);
@@ -145,7 +139,6 @@ body::after {
   position: fixed;
   inset: -10%;
   pointer-events: none;
-  touch-action: none;
   z-index: 120;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   opacity: 0.022;
@@ -1113,12 +1106,13 @@ footer .wrap {
 .certs-head h3 {
   font-size: clamp(20px, 2.4vw, 30px);
   text-transform: uppercase;
+  color: #ffffff;
 }
 .certs-close {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   flex: none;
   background: transparent;
   color: #ffffff;
@@ -1140,8 +1134,8 @@ footer .wrap {
   border-radius: 16px;
   overflow: hidden;
   cursor: zoom-in;
-  border: 1px solid var(--line);
-  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #141414;
   height: min(52vh, 440px);
   opacity: 0;
   transform: translateY(60px) rotateX(-18deg) scale(0.94);

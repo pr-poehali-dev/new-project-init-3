@@ -1202,10 +1202,73 @@ footer {
   color: var(--muted);
 }
 footer .wrap {
+  display: block;
+}
+.foot-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--line);
+}
+.foot-logo {
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.foot-logo i {
+  font-style: normal;
+  color: var(--violet);
+}
+.foot-brand p {
+  margin-top: 12px;
+  max-width: 330px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.foot-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.foot-contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--ink);
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.foot-contacts a svg {
+  color: var(--violet);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.foot-contacts a:hover {
+  color: var(--violet);
+}
+.foot-contacts a:hover svg {
+  transform: translateX(2px);
+}
+.foot-bottom {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  padding-top: 24px;
+}
+@media (max-width: 700px) {
+  .foot-top {
+    flex-direction: column;
+    gap: 28px;
+  }
 }
 
 /* ---------- certs ---------- */

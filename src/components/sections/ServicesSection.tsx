@@ -40,7 +40,7 @@ export default function ServicesSection() {
         <h2 className="sec-h reveal">Что я делаю</h2>
         <div className="svc-list">
           {SERVICES.map((s) => (
-            <a className="svc reveal" href="#works" key={s.idx}>
+            <a className="svc reveal" href="#contact" key={s.idx}>
               <span className="idx">{s.idx}</span>
               <h3>{s.title}</h3>
               <p>{s.desc}</p>

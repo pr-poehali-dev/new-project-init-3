@@ -20,6 +20,13 @@ export default function Footer({ onOpenPolicy }: Props) {
               Пигмент<i>·и·</i>Пиксель
             </div>
             <p>Креатив под задачу бизнеса. Отвечаю лично, обычно в течение дня.</p>
+            <div className="foot-legal">
+              <Icon name="BadgeCheck" size={16} />
+              <span>
+                Балковская А. В. · самозанятая · ИНН 272210038237
+                <i>Работаю официально, с чеком после оплаты</i>
+              </span>
+            </div>
           </div>
           <div className="foot-contacts">
             {CONTACTS.map((c) => {

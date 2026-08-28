@@ -6,7 +6,8 @@ interface Props {
 }
 
 export const OPERATOR = {
-  name: "Балковская Анна",
+  name: "Балковская Анна Валерьевна",
+  inn: "272210038237",
   email: "abba1458@gmail.com",
   phone: "+7 914 706-69-00",
   site: "«Пигмент и Пиксель»",
@@ -31,12 +32,14 @@ export default function PolicyOverlay({ open, onClose }: Props) {
         <div className="policy-body">
           <div className="tag">Документ</div>
           <h2>Политика обработки персональных данных</h2>
-          <p className="p-upd">Действует с 1 января 2026 года</p>
+          <p className="p-upd">Действует с 28 августа 2026 года</p>
 
           <h3>1. Оператор данных</h3>
           <p>
             Обработку персональных данных на сайте {OPERATOR.site} осуществляет{" "}
-            <b>{OPERATOR.name}</b> (далее — Оператор). Связаться с Оператором по
+            <b>{OPERATOR.name}</b>, налогоплательщик налога на профессиональный
+            доход (самозанятая), ИНН {OPERATOR.inn} (далее — Оператор).
+            Связаться с Оператором по
             любым вопросам обработки данных можно по электронной почте{" "}
             <a href={`mailto:${OPERATOR.email}`}>{OPERATOR.email}</a> или по
             телефону <a href="tel:+79147066900">{OPERATOR.phone}</a>.

@@ -9,6 +9,7 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import ClientsSection from "@/components/sections/ClientsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import CertsOverlay from "@/components/sections/CertsOverlay";
+import ScrollTop from "@/components/sections/ScrollTop";
 import Footer from "@/components/sections/Footer";
 import useReveal from "@/hooks/useReveal";
 
@@ -40,6 +41,7 @@ export default function Index() {
       <ClientsSection />
       <ContactSection />
       <CertsOverlay open={certsOpen} onClose={() => setCertsOpen(false)} />
+      <ScrollTop />
       <Footer />
     </>
   );

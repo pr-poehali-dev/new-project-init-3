@@ -13,6 +13,7 @@
   --ph-dash: rgba(255, 255, 255, 0.28);
   --stroke-c: rgba(255, 255, 255, 0.35);
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --meta-bg: rgba(10, 10, 10, 0.92);
 }
 html[data-theme="light"] {
   --bg: #ffffff;
@@ -29,6 +30,7 @@ html[data-theme="light"] {
   --ph-dash: rgba(10, 10, 10, 0.3);
   --stroke-c: rgba(10, 10, 10, 0.4);
   --shadow: 0 24px 60px rgba(10, 10, 10, 0.12);
+  --meta-bg: rgba(255, 255, 255, 0.94);
 }
 html {
   transition: background-color 0.4s;
@@ -68,8 +70,8 @@ body {
   overflow-x: hidden;
 }
 ::selection {
-  background: var(--coral);
-  color: #0a0a0f;
+  background: var(--violet);
+  color: #ffffff;
 }
 h1,
 h2,
@@ -710,8 +712,16 @@ html[data-theme="light"] .ic-moon {
 }
 .work:hover {
   transform: translateY(-6px);
-  border-color: rgba(37, 99, 235, 0.5);
-  box-shadow: var(--shadow);
+  border-color: var(--violet);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px var(--violet);
+}
+.work .meta .cat {
+  transition: color 0.3s;
+}
+.work:hover .meta .cat {
+  color: var(--ink);
 }
 .work:nth-child(2) {
   transform: translateY(34px);
@@ -733,7 +743,7 @@ html[data-theme="light"] .ic-moon {
   bottom: 0;
   padding: 22px;
   z-index: 3;
-  background: rgba(10, 10, 10, 0.92);
+  background: var(--meta-bg);
 }
 .work .meta .cat {
   font-size: 11px;
@@ -834,7 +844,7 @@ html[data-theme="light"] .ic-moon {
   transform: rotate(-45deg);
 }
 .svc:hover .arrow svg path {
-  stroke: var(--bg);
+  stroke: #ffffff;
 }
 .svc .arrow svg path {
   stroke: var(--ink);
@@ -869,8 +879,9 @@ html[data-theme="light"] .ic-moon {
   transition: 0.3s;
 }
 .step:hover {
-  border-color: rgba(37, 99, 235, 0.45);
+  border-color: var(--violet);
   transform: translateY(-5px);
+  box-shadow: 0 0 0 1px var(--violet);
 }
 .step .n {
   font-family: "Unbounded";

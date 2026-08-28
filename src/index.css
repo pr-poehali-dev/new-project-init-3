@@ -1884,7 +1884,8 @@ footer .wrap {
 }
 
 .foot-legal {
-  display: inline-flex;
+  display: flex;
+  max-width: 400px;
   align-items: flex-start;
   gap: 10px;
   margin-top: 18px;

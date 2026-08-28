@@ -2,15 +2,18 @@ interface WorkItem {
   slot: string;
   icon: "video" | "image";
   n: string;
+  cat: string;
+  title: string;
+  res: string;
 }
 
 const WORKS: WorkItem[] = [
-  { slot: "video-1", icon: "video", n: "01" },
-  { slot: "video-2", icon: "video", n: "02" },
-  { slot: "work-3", icon: "image", n: "03" },
-  { slot: "work-4", icon: "image", n: "04" },
-  { slot: "work-5", icon: "image", n: "05" },
-  { slot: "work-6", icon: "image", n: "06" },
+  { slot: "video-1", icon: "video", n: "01", cat: "Рекламный ролик", title: "Название проекта", res: "Задача → решение → результат" },
+  { slot: "video-2", icon: "video", n: "02", cat: "Имиджевое видео", title: "Название проекта", res: "Задача → решение → результат" },
+  { slot: "work-3", icon: "image", n: "03", cat: "Ключевой визуал", title: "Название проекта", res: "Задача → решение → результат" },
+  { slot: "work-4", icon: "image", n: "04", cat: "Контент для соцсетей", title: "Название проекта", res: "Задача → решение → результат" },
+  { slot: "work-5", icon: "image", n: "05", cat: "Карточки товара", title: "Название проекта", res: "Задача → решение → результат" },
+  { slot: "work-6", icon: "image", n: "06", cat: "Презентация", title: "Название проекта", res: "Задача → решение → результат" },
 ];
 
 function WorkIcon({ type }: { type: "video" | "image" }) {
@@ -52,21 +55,27 @@ export default function WorksSection() {
         </div>
         <div className="works-grid">
           {WORKS.map((w) => (
-            <div className="work reveal" key={w.slot}>
-              <div className="ph-slot" data-slot={w.slot}>
-                <WorkIcon type={w.icon} />
-                <span className="cap">
-                  Работа {w.n} · видео или серия кадров
-                  <br />
-                  замените на файл работы
-                </span>
+            <article className="work reveal" key={w.slot}>
+              <div className="work-frame">
+                <div className="ph-slot" data-slot={w.slot}>
+                  <WorkIcon type={w.icon} />
+                  <span className="cap">
+                    Работа {w.n}
+                    <br />
+                    замените на файл
+                  </span>
+                </div>
+                <span className="work-shine" />
+                <span className="work-tag">{w.cat}</span>
               </div>
               <div className="meta">
-                <div className="cat">Категория проекта</div>
-                <h3>Название проекта</h3>
-                <div className="res">Задача → решение → результат</div>
+                <div className="w-num">
+                  {w.n} <i>/ 2026</i>
+                </div>
+                <h3>{w.title}</h3>
+                <div className="res">{w.res}</div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

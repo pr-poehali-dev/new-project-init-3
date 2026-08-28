@@ -712,36 +712,33 @@ html[data-theme="light"] .ic-moon {
 .works-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 30px 26px;
 }
 .work {
   position: relative;
-  border-radius: 18px;
-  overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line);
-  aspect-ratio: 3/4;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   cursor: pointer;
-  transition: 0.35s;
-}
-.work:hover {
-  transform: translateY(-6px);
-  border-color: var(--violet);
-  box-shadow:
-    var(--shadow),
-    0 0 0 1px var(--violet);
-}
-.work .meta .cat {
-  transition: color 0.3s;
-}
-.work:hover .meta .cat {
-  color: var(--ink);
 }
 .work:nth-child(2) {
   transform: translateY(34px);
 }
-.work:nth-child(2):hover {
-  transform: translateY(28px);
+.work-frame {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s,
+    box-shadow 0.5s;
+}
+.work:hover .work-frame {
+  transform: translateY(-8px);
+  border-color: rgba(37, 99, 235, 0.55);
+  box-shadow: var(--shadow), 0 0 0 1px rgba(37, 99, 235, 0.3);
 }
 .work .ph-slot {
   position: absolute;
@@ -750,34 +747,84 @@ html[data-theme="light"] .ic-moon {
   border-radius: 0;
   background: var(--card);
 }
-.work .meta {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 22px;
-  z-index: 3;
-  background: var(--meta-bg);
+.work .ph-slot img,
+.work .ph-slot video {
+  border-radius: 0;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.work .meta .cat {
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--violet);
+.work:hover .ph-slot img,
+.work:hover .ph-slot video {
+  transform: scale(1.05);
+}
+.work-shine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 45%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.14),
+    transparent
+  );
+  transform: skewX(-18deg);
+  transition: left 0.8s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+.work:hover .work-shine {
+  left: 125%;
+}
+.work-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  padding: 7px 13px;
+  border-radius: 100px;
+  font-size: 10.5px;
   font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(10, 10, 10, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  transition: 0.4s;
+}
+.work:hover .work-tag {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+.work .meta {
+  padding-left: 2px;
+}
+.work .meta .w-num {
+  font-family: "Unbounded", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--violet);
+  margin-bottom: 8px;
+}
+.work .meta .w-num i {
+  font-style: normal;
+  color: var(--muted);
 }
 .work .meta h3 {
-  font-size: 19px;
-  margin-top: 8px;
+  font-size: 18px;
   font-weight: 600;
+  line-height: 1.3;
+  transition: color 0.3s;
+}
+.work:hover .meta h3 {
+  color: var(--violet);
 }
 .work .meta .res {
   font-size: 13.5px;
   color: var(--muted);
   margin-top: 6px;
-}
-.work .meta .res b {
-  color: var(--coral);
+  line-height: 1.5;
 }
 @media (max-width: 960px) {
   .works-grid {
@@ -786,13 +833,11 @@ html[data-theme="light"] .ic-moon {
   .work:nth-child(2) {
     transform: none;
   }
-  .work:nth-child(2):hover {
-    transform: translateY(-6px);
-  }
 }
 @media (max-width: 620px) {
   .works-grid {
     grid-template-columns: 1fr;
+    gap: 34px;
   }
 }
 

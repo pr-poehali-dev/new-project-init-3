@@ -34,7 +34,11 @@ html[data-theme="light"] {
 }
 html {
   transition: background-color 0.4s;
-  scroll-behavior: smooth;
+}
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 body,
 nav,

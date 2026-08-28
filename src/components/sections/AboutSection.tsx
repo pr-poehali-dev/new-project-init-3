@@ -45,13 +45,24 @@ export default function AboutSection({ onOpenCerts }: AboutSectionProps) {
             Дипломы и сертификаты →
           </button>
         </div>
-        <div className="ph-slot about-photo reveal filled" data-slot="photo">
-          <img
-            src={PHOTO_URL}
-            alt="Анна — основатель студии «Пигмент и Пиксель»"
-            style={{ objectPosition: "50% 8%" }}
-          />
-        </div>
+        <aside className="about-aside reveal">
+          <figure className="about-photo-wrap">
+            <span className="ap-frame">
+              <img
+                src={PHOTO_URL}
+                alt="Анна Балковская — основатель студии «Пигмент и Пиксель»"
+                loading="lazy"
+              />
+            </span>
+            <figcaption>
+              <b>Анна Балковская</b>
+              <span>Основатель студии · AI-продюсер</span>
+            </figcaption>
+          </figure>
+          <blockquote className="about-quote">
+            «Нейросети не заменяют насмотренность и вкус — они дают им скорость.»
+          </blockquote>
+        </aside>
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ export default function HeroSection() {
             <span>Каждой</span>
           </span>
           <span className="row">
-            <span className="stroke">задаче —</span>
+            <span>задаче —</span>
           </span>
           <span className="row">
             <span>

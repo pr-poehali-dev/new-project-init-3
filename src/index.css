@@ -1,34 +1,34 @@
 :root {
-  --bg: #12080a;
-  --bg2: #170a0d;
-  --ink: #f2ede6;
-  --muted: #9c8f89;
-  --violet: #7a2e3a;
-  --coral: #c96b76;
-  --amber: #d8d2c4;
-  --line: rgba(242, 237, 230, 0.12);
-  --card: #1d1013;
-  --nav-bg: rgba(18, 8, 10, 0.82);
-  --btn-ink: #f5f1ea;
-  --ph-dash: rgba(242, 237, 230, 0.28);
-  --stroke-c: rgba(242, 237, 230, 0.35);
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --bg: #0a0a0a;
+  --bg2: #101010;
+  --ink: #ffffff;
+  --muted: #8f8f8f;
+  --violet: #2563eb;
+  --coral: #2563eb;
+  --amber: #ffffff;
+  --line: rgba(255, 255, 255, 0.12);
+  --card: #141414;
+  --nav-bg: rgba(10, 10, 10, 0.85);
+  --btn-ink: #ffffff;
+  --ph-dash: rgba(255, 255, 255, 0.28);
+  --stroke-c: rgba(255, 255, 255, 0.35);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
 html[data-theme="light"] {
-  --bg: #f5f1ea;
-  --bg2: #ffffff;
-  --ink: #1a1012;
-  --muted: #6b5f5c;
-  --violet: #6b222d;
-  --coral: #a3505a;
-  --amber: #8c8477;
-  --line: rgba(26, 16, 18, 0.14);
+  --bg: #ffffff;
+  --bg2: #f6f6f6;
+  --ink: #0a0a0a;
+  --muted: #666666;
+  --violet: #1d4ed8;
+  --coral: #1d4ed8;
+  --amber: #0a0a0a;
+  --line: rgba(10, 10, 10, 0.14);
   --card: #ffffff;
-  --nav-bg: rgba(245, 241, 234, 0.85);
-  --btn-ink: #f5f1ea;
-  --ph-dash: rgba(26, 16, 18, 0.3);
-  --stroke-c: rgba(26, 16, 18, 0.4);
-  --shadow: 0 24px 60px rgba(26, 16, 18, 0.14);
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --btn-ink: #ffffff;
+  --ph-dash: rgba(10, 10, 10, 0.3);
+  --stroke-c: rgba(10, 10, 10, 0.4);
+  --shadow: 0 24px 60px rgba(10, 10, 10, 0.12);
 }
 html {
   transition: background-color 0.4s;
@@ -123,18 +123,10 @@ section {
   content: "";
   width: 34px;
   height: 1px;
-  background: linear-gradient(90deg, var(--violet), var(--coral));
+  background: var(--violet);
 }
 .grad {
-  background: linear-gradient(
-    100deg,
-    var(--violet) 0%,
-    var(--coral) 70%,
-    var(--amber) 115%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--violet);
 }
 .stroke {
   color: transparent;
@@ -149,7 +141,7 @@ body::after {
   pointer-events: none;
   z-index: 120;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.05;
+  opacity: 0.022;
   animation: grain 7s steps(8) infinite;
 }
 @keyframes grain {
@@ -234,16 +226,17 @@ nav .wrap {
   border-radius: 100px;
   font-weight: 700;
   font-size: 15px;
-  background: linear-gradient(100deg, var(--violet), var(--coral));
+  background: var(--violet);
   color: var(--btn-ink);
   border: none;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 8px 30px rgba(122, 46, 58, 0.35);
+  box-shadow: none;
 }
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(181, 82, 94, 0.45);
+  background: #1d4ed8;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
 }
 .btn.ghost {
   background: transparent;
@@ -325,44 +318,7 @@ nav .btn {
   opacity: 0.55;
 }
 .hero-aurora span {
-  position: absolute;
-  border-radius: 50%;
-}
-.a1 {
-  width: 640px;
-  height: 640px;
-  background: radial-gradient(circle, rgba(122, 46, 58, 0.5), transparent 65%);
-  top: -12%;
-  left: -8%;
-  animation: drift 16s ease-in-out infinite alternate;
-}
-.a2 {
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, rgba(181, 82, 94, 0.38), transparent 65%);
-  top: 20%;
-  right: -6%;
-  animation: drift 20s ease-in-out infinite alternate-reverse;
-}
-.a3 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(
-    circle,
-    rgba(201, 196, 186, 0.22),
-    transparent 65%
-  );
-  bottom: -14%;
-  left: 34%;
-  animation: drift 24s ease-in-out infinite alternate;
-}
-@keyframes drift {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(70px, 50px) scale(1.15);
-  }
+  display: none;
 }
 .hero-inner {
   position: relative;
@@ -618,10 +574,7 @@ html[data-theme="light"] .ic-moon {
   line-height: 1.5;
 }
 .about-text .lead b {
-  background: linear-gradient(100deg, var(--violet), var(--coral));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--violet);
 }
 .stats {
   display: flex;
@@ -672,13 +625,7 @@ html[data-theme="light"] .ic-moon {
   position: relative;
   border: 1px dashed var(--ph-dash);
   border-radius: 20px;
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(122, 46, 58, 0.12),
-      transparent 60%
-    ),
-    var(--card);
+  background: var(--card);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -763,7 +710,7 @@ html[data-theme="light"] .ic-moon {
 }
 .work:hover {
   transform: translateY(-6px);
-  border-color: rgba(122, 46, 58, 0.5);
+  border-color: rgba(37, 99, 235, 0.5);
   box-shadow: var(--shadow);
 }
 .work:nth-child(2) {
@@ -777,9 +724,7 @@ html[data-theme="light"] .ic-moon {
   inset: 0;
   border: none;
   border-radius: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(122, 46, 58, 0.1), transparent 65%),
-    var(--card);
+  background: var(--card);
 }
 .work .meta {
   position: absolute;
@@ -788,13 +733,13 @@ html[data-theme="light"] .ic-moon {
   bottom: 0;
   padding: 22px;
   z-index: 3;
-  background: linear-gradient(transparent, rgba(10, 10, 15, 0.92));
+  background: rgba(10, 10, 10, 0.92);
 }
 .work .meta .cat {
   font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--violet);
   font-weight: 700;
 }
 .work .meta h3 {
@@ -851,7 +796,7 @@ html[data-theme="light"] .ic-moon {
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(var(--violet), var(--coral));
+  background: var(--violet);
   transform: scaleY(0);
   transition: 0.3s;
   transform-origin: top;
@@ -924,7 +869,7 @@ html[data-theme="light"] .ic-moon {
   transition: 0.3s;
 }
 .step:hover {
-  border-color: rgba(181, 82, 94, 0.45);
+  border-color: rgba(37, 99, 235, 0.45);
   transform: translateY(-5px);
 }
 .step .n {
@@ -966,14 +911,12 @@ html[data-theme="light"] .ic-moon {
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 36px 30px;
-  background:
-    linear-gradient(160deg, rgba(122, 46, 58, 0.07), transparent 55%),
-    var(--card);
+  background: var(--card);
 }
 .prin .mark {
   font-family: "Unbounded";
   font-size: 30px;
-  color: var(--amber);
+  color: var(--violet);
   margin-bottom: 18px;
 }
 .prin h3 {
@@ -1056,22 +999,7 @@ html[data-theme="light"] .ic-moon {
   opacity: 0.4;
 }
 .contact-aurora span {
-  position: absolute;
-  border-radius: 50%;
-}
-.c1 {
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(122, 46, 58, 0.5), transparent 65%);
-  top: -20%;
-  left: 8%;
-}
-.c2 {
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, rgba(181, 82, 94, 0.4), transparent 65%);
-  bottom: -25%;
-  right: 6%;
+  display: none;
 }
 
 /* ---------- contact form ---------- */
@@ -1104,7 +1032,7 @@ html[data-theme="light"] .ic-moon {
 .cform textarea:focus {
   outline: none;
   border-color: var(--violet);
-  box-shadow: 0 0 0 4px rgba(122, 46, 58, 0.18);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
 }
 .cform .btn {
   justify-content: center;
@@ -1143,7 +1071,7 @@ footer .wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 9, 8, 0.9);
+  background: rgba(0, 0, 0, 0.92);
   backdrop-filter: blur(14px);
   opacity: 0;
   pointer-events: none;
@@ -1177,7 +1105,7 @@ footer .wrap {
   border: 1px solid var(--line);
   flex: none;
   background: transparent;
-  color: #f1ede2;
+  color: #ffffff;
   font-size: 22px;
   cursor: pointer;
   transition: 0.3s;
@@ -1225,7 +1153,7 @@ footer .wrap {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: #0b100d;
+  background: #0a0a0a;
   transition: transform 0.5s;
 }
 .cert-card:hover img {
@@ -1237,15 +1165,15 @@ footer .wrap {
   right: 0;
   bottom: 0;
   padding: 16px 18px;
-  background: linear-gradient(transparent, rgba(6, 9, 8, 0.94));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.94));
   font-size: 13px;
   font-weight: 700;
-  color: #f1ede2;
+  color: #ffffff;
 }
 .cert-card .cc-meta span {
   display: block;
   font-weight: 500;
-  color: #9aa396;
+  color: #8f8f8f;
   font-size: 11.5px;
   margin-top: 3px;
   letter-spacing: 0.06em;
@@ -1280,7 +1208,7 @@ footer .wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 9, 8, 0.94);
+  background: rgba(0, 0, 0, 0.94);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s;

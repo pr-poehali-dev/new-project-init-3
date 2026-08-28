@@ -345,7 +345,6 @@ nav .btn {
 }
 .hero h1 .row {
   display: block;
-  overflow: hidden;
 }
 .hero h1 .row span {
   display: inline-block;
@@ -359,9 +358,11 @@ nav .btn {
 }
 @keyframes rise {
   from {
-    transform: translateY(110%);
+    opacity: 0;
+    transform: translateY(24px);
   }
   to {
+    opacity: 1;
     transform: translateY(0);
   }
 }

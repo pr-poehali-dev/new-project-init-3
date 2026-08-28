@@ -9,21 +9,26 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import ClientsSection from "@/components/sections/ClientsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import CertsOverlay from "@/components/sections/CertsOverlay";
+import PolicyOverlay from "@/components/sections/PolicyOverlay";
 import ScrollTop from "@/components/sections/ScrollTop";
 import Footer from "@/components/sections/Footer";
 import useReveal from "@/hooks/useReveal";
 
 export default function Index() {
   const [certsOpen, setCertsOpen] = useState(false);
+  const [policyOpen, setPolicyOpen] = useState(false);
   useReveal();
 
   useEffect(() => {
-    document.body.style.overflow = certsOpen ? "hidden" : "";
-  }, [certsOpen]);
+    document.body.style.overflow = certsOpen || policyOpen ? "hidden" : "";
+  }, [certsOpen, policyOpen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setCertsOpen(false);
+      if (e.key === "Escape") {
+        setCertsOpen(false);
+        setPolicyOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -54,10 +59,11 @@ export default function Index() {
       <AboutSection onOpenCerts={() => setCertsOpen(true)} />
       <ProcessSection />
       <ClientsSection />
-      <ContactSection />
+      <ContactSection onOpenPolicy={() => setPolicyOpen(true)} />
       <CertsOverlay open={certsOpen} onClose={() => setCertsOpen(false)} />
+      <PolicyOverlay open={policyOpen} onClose={() => setPolicyOpen(false)} />
       <ScrollTop />
-      <Footer />
+      <Footer onOpenPolicy={() => setPolicyOpen(true)} />
     </>
   );
 }

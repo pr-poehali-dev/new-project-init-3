@@ -6,7 +6,11 @@ const CONTACTS = [
   { icon: "Mail", label: "abba1458@gmail.com", href: "mailto:abba1458@gmail.com" },
 ];
 
-export default function Footer() {
+interface Props {
+  onOpenPolicy: () => void;
+}
+
+export default function Footer({ onOpenPolicy }: Props) {
   return (
     <footer>
       <div className="wrap">
@@ -36,6 +40,9 @@ export default function Footer() {
         </div>
         <div className="foot-bottom">
           <span>© 2026 Пигмент и Пиксель</span>
+          <button type="button" className="foot-policy" onClick={onOpenPolicy}>
+            Политика обработки персональных данных
+          </button>
           <span>Этот лендинг — тоже моя работа: от идеи до кода</span>
         </div>
       </div>

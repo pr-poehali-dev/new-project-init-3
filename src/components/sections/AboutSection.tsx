@@ -60,7 +60,9 @@ export default function AboutSection({ onOpenCerts }: AboutSectionProps) {
             </figcaption>
           </figure>
           <blockquote className="about-quote">
-            «Нейросети не заменяют насмотренность и вкус — они дают им скорость.»
+            «Нейросети не заменяют опыт, насмотренность и вкус — они стирают
+            границы творчества, позволяя реализовать любую идею в требуемые
+            сроки.»
           </blockquote>
         </aside>
       </div>

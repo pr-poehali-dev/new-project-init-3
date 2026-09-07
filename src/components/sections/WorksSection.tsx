@@ -19,7 +19,7 @@ const WORKS: WorkItem[] = [
     icon: "image",
     n: "05",
     cat: "Лендинг",
-    title: "Помёт бультерьеров",
+    title: "NOBLE EAST BULL kennel",
     res: "Лендинг питомника → рост заявок на щенков",
     img: "/work-5.webp",
     href: "https://nobleeastbull.ru",

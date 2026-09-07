@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { useEffect, useState } from "react";
+import Icon from "@/components/ui/icon";
 
 interface WorkItem {
   slot: string;
@@ -103,6 +103,19 @@ function WorkIcon({ type }: { type: "video" | "image" | "nda" }) {
 
 export default function WorksSection() {
   const [activeVideo, setActiveVideo] = useState<WorkItem | null>(null);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveVideo(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [activeVideo]);
 
   return (
     <section className="works" id="works">
@@ -209,20 +222,21 @@ export default function WorksSection() {
           Часть проектов я не могу показывать публично — условия NDA. Расскажу о них лично при созвоне.
         </p>
       </div>
-      <Dialog open={!!activeVideo} onOpenChange={(open) => !open && setActiveVideo(null)}>
-        <DialogContent className="works-video-dialog max-w-3xl border-none bg-transparent p-0 shadow-none">
-          <DialogTitle className="sr-only">{activeVideo?.title}</DialogTitle>
-          {activeVideo?.video && (
-            <video
-              src={activeVideo.video}
-              controls
-              autoPlay
-              playsInline
-              className="w-full rounded-xl"
-            />
-          )}
-        </DialogContent>
-      </Dialog>
+      {activeVideo?.video && (
+        <div className="video-modal" onClick={() => setActiveVideo(null)}>
+          <div className="video-modal-inner" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="video-modal-close"
+              onClick={() => setActiveVideo(null)}
+              aria-label="Закрыть"
+            >
+              <Icon name="X" size={20} />
+            </button>
+            <video src={activeVideo.video} controls autoPlay playsInline />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

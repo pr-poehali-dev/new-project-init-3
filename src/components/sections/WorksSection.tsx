@@ -6,6 +6,7 @@ interface WorkItem {
   title: string;
   res: string;
   img?: string;
+  video?: string;
   href?: string;
   nda?: boolean;
 }
@@ -18,6 +19,7 @@ const WORKS: WorkItem[] = [
     cat: "Концепт-ролик · одежда для охоты",
     title: "В стиле бренда Remington",
     res: "Учебный проект: от идеи до готового видео",
+    video: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/dfd2f5d5-a6c8-4760-9548-413b6c74aaf9.mp4",
   },
   {
     slot: "video-2",
@@ -26,6 +28,7 @@ const WORKS: WorkItem[] = [
     cat: "Концепт-ролик · мясопродукты",
     title: "В стиле бренда Ратимир",
     res: "Учебный проект: от идеи до готового видео",
+    video: "https://cdn.poehali.dev/projects/ccf6d923-8e06-4ebd-b300-23f09990c16e/bucket/75add3a3-eb48-4745-9d7a-f6711d340167.mp4",
   },
   { slot: "work-3", icon: "image", n: "03", cat: "Категория проекта", title: "Название проекта", res: "Задача → решение → результат" },
   {
@@ -119,8 +122,21 @@ export default function WorksSection() {
             const content = (
               <>
                 <div className="work-frame">
-                  <div className={`ph-slot${w.img ? " filled" : ""}${w.nda ? " nda-slot" : ""}`} data-slot={w.slot}>
-                    {w.img ? (
+                  <div className={`ph-slot${w.img || w.video ? " filled" : ""}${w.nda ? " nda-slot" : ""}`} data-slot={w.slot}>
+                    {w.video ? (
+                      <video
+                        src={w.video}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.pause();
+                          e.currentTarget.currentTime = 0;
+                        }}
+                      />
+                    ) : w.img ? (
                       <img src={w.img} alt={w.title} loading="lazy" />
                     ) : w.nda ? (
                       <>

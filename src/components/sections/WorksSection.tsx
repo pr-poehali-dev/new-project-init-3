@@ -1,23 +1,56 @@
 interface WorkItem {
   slot: string;
-  icon: "video" | "image";
+  icon: "video" | "image" | "nda";
   n: string;
   cat: string;
   title: string;
   res: string;
   img?: string;
   href?: string;
+  nda?: boolean;
 }
 
 const WORKS: WorkItem[] = [
-  { slot: "video-1", icon: "video", n: "01", cat: "Рекламный ролик", title: "Название проекта", res: "Задача → решение → результат" },
-  { slot: "video-2", icon: "video", n: "02", cat: "Имиджевое видео", title: "Название проекта", res: "Задача → решение → результат" },
-  { slot: "work-3", icon: "image", n: "03", cat: "Ключевой визуал", title: "Название проекта", res: "Задача → решение → результат" },
-  { slot: "work-4", icon: "image", n: "04", cat: "Контент для соцсетей", title: "Название проекта", res: "Задача → решение → результат" },
   {
-    slot: "work-5",
-    icon: "image",
+    slot: "video-1",
+    icon: "video",
+    n: "01",
+    cat: "Концепт-ролик · одежда для охоты",
+    title: "В стиле бренда Remington",
+    res: "Учебный проект: от идеи до готового видео",
+  },
+  {
+    slot: "video-2",
+    icon: "video",
+    n: "02",
+    cat: "Концепт-ролик · мясопродукты",
+    title: "В стиле бренда Ратимир",
+    res: "Учебный проект: от идеи до готового видео",
+  },
+  { slot: "work-3", icon: "image", n: "03", cat: "Категория проекта", title: "Название проекта", res: "Задача → решение → результат" },
+  {
+    slot: "nda-1",
+    icon: "nda",
+    n: "04",
+    cat: "NDA · музыка и видео",
+    title: "Гимн и фильм для госпроекта",
+    res: "Авторская музыка и 4-минутный фильм → 4000 органических просмотров без продвижения",
+    nda: true,
+  },
+  {
+    slot: "nda-2",
+    icon: "nda",
     n: "05",
+    cat: "NDA · категория проекта",
+    title: "Масштаб клиента",
+    res: "Задача → решение → результат в цифрах",
+    nda: true,
+  },
+  { slot: "work-6", icon: "image", n: "06", cat: "Категория проекта", title: "Название проекта", res: "Задача → решение → результат" },
+  {
+    slot: "work-7",
+    icon: "image",
+    n: "07",
     cat: "Лендинг",
     title: "NOBLE EAST BULL kennel",
     res: "Лендинг питомника → рост заявок на щенков",
@@ -25,9 +58,9 @@ const WORKS: WorkItem[] = [
     href: "https://nobleeastbull.ru",
   },
   {
-    slot: "work-6",
+    slot: "work-8",
     icon: "image",
-    n: "06",
+    n: "08",
     cat: "Лендинг",
     title: "Pacific Protec",
     res: "Лендинг бренда → увеличение количества клиентов",
@@ -36,12 +69,20 @@ const WORKS: WorkItem[] = [
   },
 ];
 
-function WorkIcon({ type }: { type: "video" | "image" }) {
+function WorkIcon({ type }: { type: "video" | "image" | "nda" }) {
   if (type === "video") {
     return (
       <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <rect x="2" y="4" width="20" height="16" rx="3" />
         <path d="M10 9l5 3-5 3z" />
+      </svg>
+    );
+  }
+  if (type === "nda") {
+    return (
+      <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+        <rect x="4" y="10" width="16" height="10" rx="2" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
       </svg>
     );
   }
@@ -78,16 +119,25 @@ export default function WorksSection() {
             const content = (
               <>
                 <div className="work-frame">
-                  <div className={`ph-slot${w.img ? " filled" : ""}`} data-slot={w.slot}>
+                  <div className={`ph-slot${w.img ? " filled" : ""}${w.nda ? " nda-slot" : ""}`} data-slot={w.slot}>
                     {w.img ? (
                       <img src={w.img} alt={w.title} loading="lazy" />
+                    ) : w.nda ? (
+                      <>
+                        <WorkIcon type={w.icon} />
+                        <span className="cap">Проект под NDA</span>
+                      </>
                     ) : (
                       <>
                         <WorkIcon type={w.icon} />
                         <span className="cap">
-                          Работа {w.n}
-                          <br />
-                          замените на файл
+                          {w.icon === "video" ? "Замените на кадр или видео ролика" : (
+                            <>
+                              Работа {w.n} · видео или серия кадров
+                              <br />
+                              замените на файл работы
+                            </>
+                          )}
                         </span>
                       </>
                     )}
@@ -96,9 +146,7 @@ export default function WorksSection() {
                   <span className="work-tag">{w.cat}</span>
                 </div>
                 <div className="meta">
-                  <div className="w-num">
-                    {w.n} <i>/ 2026</i>
-                  </div>
+                  <div className="cat">{w.cat}</div>
                   <h3>{w.title}</h3>
                   <div className="res">{w.res}</div>
                 </div>
@@ -115,12 +163,15 @@ export default function WorksSection() {
                 {content}
               </a>
             ) : (
-              <article className="work reveal" key={w.slot}>
+              <article className={`work reveal${w.nda ? " nda" : ""}`} key={w.slot}>
                 {content}
               </article>
             );
           })}
         </div>
+        <p className="works-note reveal">
+          Часть проектов я не могу показывать публично — условия NDA. Расскажу о них лично при созвоне.
+        </p>
       </div>
     </section>
   );

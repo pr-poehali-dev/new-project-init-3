@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+
 interface WorkItem {
   slot: string;
   icon: "video" | "image" | "nda";
@@ -99,6 +102,8 @@ function WorkIcon({ type }: { type: "video" | "image" | "nda" }) {
 }
 
 export default function WorksSection() {
+  const [activeVideo, setActiveVideo] = useState<WorkItem | null>(null);
+
   return (
     <section className="works" id="works">
       <div className="wrap">
@@ -168,17 +173,32 @@ export default function WorksSection() {
                 </div>
               </>
             );
-            return w.href ? (
-              <a
-                className="work reveal"
-                key={w.slot}
-                href={w.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {content}
-              </a>
-            ) : (
+            if (w.href) {
+              return (
+                <a
+                  className="work reveal"
+                  key={w.slot}
+                  href={w.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {content}
+                </a>
+              );
+            }
+            if (w.video) {
+              return (
+                <button
+                  type="button"
+                  className="work reveal work-btn"
+                  key={w.slot}
+                  onClick={() => setActiveVideo(w)}
+                >
+                  {content}
+                </button>
+              );
+            }
+            return (
               <article className={`work reveal${w.nda ? " nda" : ""}`} key={w.slot}>
                 {content}
               </article>
@@ -189,6 +209,20 @@ export default function WorksSection() {
           Часть проектов я не могу показывать публично — условия NDA. Расскажу о них лично при созвоне.
         </p>
       </div>
+      <Dialog open={!!activeVideo} onOpenChange={(open) => !open && setActiveVideo(null)}>
+        <DialogContent className="works-video-dialog max-w-3xl border-none bg-transparent p-0 shadow-none">
+          <DialogTitle className="sr-only">{activeVideo?.title}</DialogTitle>
+          {activeVideo?.video && (
+            <video
+              src={activeVideo.video}
+              controls
+              autoPlay
+              playsInline
+              className="w-full rounded-xl"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

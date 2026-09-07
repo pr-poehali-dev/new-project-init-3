@@ -797,6 +797,16 @@ html[data-theme="light"] .ic-moon {
   gap: 16px;
   cursor: pointer;
 }
+.work-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  width: 100%;
+}
 .work:nth-child(2) {
   transform: translateY(34px);
 }

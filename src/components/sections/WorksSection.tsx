@@ -12,8 +12,8 @@ const WORKS: WorkItem[] = [
   { slot: "video-2", icon: "video", n: "02", cat: "Имиджевое видео", title: "Название проекта", res: "Задача → решение → результат" },
   { slot: "work-3", icon: "image", n: "03", cat: "Ключевой визуал", title: "Название проекта", res: "Задача → решение → результат" },
   { slot: "work-4", icon: "image", n: "04", cat: "Контент для соцсетей", title: "Название проекта", res: "Задача → решение → результат" },
-  { slot: "work-5", icon: "image", n: "05", cat: "Карточки товара", title: "Название проекта", res: "Задача → решение → результат" },
-  { slot: "work-6", icon: "image", n: "06", cat: "Презентация", title: "Название проекта", res: "Задача → решение → результат" },
+  { slot: "work-5", icon: "image", n: "05", cat: "Лендинг", title: "Помёт бультерьеров", res: "Лендинг питомника → рост заявок на щенков" },
+  { slot: "work-6", icon: "image", n: "06", cat: "Лендинг", title: "Pacific Protec", res: "Лендинг бренда → увеличение количества клиентов" },
 ];
 
 function WorkIcon({ type }: { type: "video" | "image" }) {
